@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "helm-platform-app.fullname" . }}
+  name: {{ .Release.Name }}-service
   labels:
     {{- include "helm-platform-app.labels" . | nindent 4 }}
 spec:
@@ -11,5 +11,9 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - name: metrics
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
   selector:
     {{- include "helm-platform-app.selectorLabels" . | nindent 4 }}

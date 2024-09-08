@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Release.Name }}-servicemonitor
+  namespace: monitoring
+  labels:
+    app: flask-app
+    release: prometheus-stack
+spec:
+  endpoints:
+    - interval: 10s
+      path: /metrics
+      port: metrics
+      scheme: http
+  jobLabel: app
+  namespaceSelector:
+    matchNames:
+    - default
+  sampleLimit: 1000
+  selector:
+    matchLabels:
+      {{- include "helm-platform-app.labels" . | nindent 4 }}

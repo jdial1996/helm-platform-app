@@ -2,7 +2,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "helm-platform-app.fullname" . }}
+  name: {{ .Release.Name }}-hpa
   labels:
     {{- include "helm-platform-app.labels" . | nindent 4 }}
 spec:

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "helm-platform-app.fullname" . }}
+  name: {{ .Release.Name }}-deployment
   labels:
     {{- include "helm-platform-app.labels" . | nindent 4 }}
 spec:
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "helm-platform-app.serviceAccountName" . }}
+      serviceAccountName: {{ .Release.Name }}-serviceaccount
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

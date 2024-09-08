@@ -8,7 +8,7 @@ image:
   repository: jdial1996/platform-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.1.2
+  tag: v0.4.7
 
 imagePullSecrets: []
 nameOverride: ""
